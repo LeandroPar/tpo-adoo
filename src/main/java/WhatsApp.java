@@ -1,16 +1,14 @@
-public class WhatsApp implements INotificacion {
-    private String telefono;
+public class WhatsApp extends Notificacion{
+        private String telefono;
+        private AdaptadorWPP api;
 
-    public WhatsApp(String telefono) {
-        this.telefono = telefono;
-    }
+        public WhatsApp(String telefono) {
+            this.telefono = telefono;
+            this.api = new AdaptadorWPP();
+        }
 
-    public final void enviarMensaje(String phone, String message) {
-        System.out.printf("Mandando a telefono %s el mensaje: %s\n", phone, message);
-    }
-
-    @Override
-    public void enviarMensaje(String mensaje) {
-        this.enviarMensaje(telefono, mensaje);
-    }
+       // @Override
+        public void crearNotificacion(String mensaje) {
+            this.api.enviarMensaje(telefono, mensaje);
+        }
 }

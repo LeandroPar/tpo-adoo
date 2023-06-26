@@ -1,16 +1,13 @@
-public class Email implements INotificacion {
+public class Email extends Notificacion {
     private String mail;
+    private AdaptadorMail api;
 
     public Email(String mail) {
         this.mail = mail;
+        this.api = new AdaptadorMail();
     }
 
-    public final void send(String email, String body) {
-        System.out.printf("Mandando a mail %s el mensaje: %s\n", email, body);
-    }
-
-    @Override
-    public void enviarMensaje(String mensaje) {
-        this.send(mail, mensaje);
+    public void crearNotificacion(String mensaje) {
+        this.api.send(mail, mensaje);
     }
 }

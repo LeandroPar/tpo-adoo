@@ -1,3 +1,12 @@
-public class NotificacionMail{
+public class NotificacionMail extends Notificacion{
+    private Mensaje mensaje;
+    private Socio socio;
+    private TipoMedioComunicacion medioFav;
+
+    public Notificacion crearNotificacion(Mensaje mensaje, Socio socio, TipoMedioComunicacion medioFav){
+        Notificacion notificacion = new NotificacionMail();
+
+        return notificacion;
+    }
 
 }

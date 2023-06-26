@@ -5,6 +5,7 @@ import java.util.List;
 public class EjemplaresController {
 
     private static EjemplaresController ejemplaresController;
+    private List<Ejemplar> ejemplares;
 
     public static EjemplaresController getInstance(){
         if (ejemplaresController == null){

@@ -1,16 +1,14 @@
-public class SMS implements INotificacion {
+public class SMS extends Notificacion {
     private String telefono;
+    private AdaptadorSMS api;
 
     public SMS(String telefono) {
         this.telefono = telefono;
+        this.api = new AdaptadorSMS();
     }
 
-    public final void sendSMS(String recipient, String message ) {
-        System.out.printf("Mandando SMS %s el mensaje: %s\n", recipient, message);
-    }
-
-    @Override
-    public void enviarMensaje(String mensaje) {
-        this.sendSMS(telefono, mensaje);
+    //@Override
+    public void crearNotificacion(String mensaje) {
+        this.api.sendSMS(telefono, mensaje);
     }
 }
