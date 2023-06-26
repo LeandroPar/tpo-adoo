@@ -1,6 +1,20 @@
+import java.time.LocalDate;
+
 public class CondicionPrestamoObserver extends ObserverPlazo{
+    private LocalDate ultimaFechaEjecucion;
     private Prestamo prestamo;
 
+    public void actualizar(CronJobPlazo observable) {
+        System.out.println("Check");
+        LocalDate fechaUpdate = (observable.getUltimaEjecucion());
+        if (this.ultimaFechaEjecucion!=fechaUpdate) {
+            System.out.println("Check");
+            actualizarEstado(this.prestamo);
+            descontarDiasPrestamoSocio(this.prestamo);
+            suspenderSocio(this.prestamo);
+        }
+        this.ultimaFechaEjecucion = ultimaFechaEjecucion.plusDays(1);
+    }
 
     public void actualizarEstado(Prestamo prestamo){
         if (prestamo.getDiasFaltantes() == -1)
@@ -12,7 +26,7 @@ public class CondicionPrestamoObserver extends ObserverPlazo{
                 prestamo.getSocio().setDiasPrestamo(prestamo.getSocio().getDiasPrestamo()-1);
         }
 
-    public void suspenderSocio(){
+    public void suspenderSocio(Prestamo prestamo){
         if (prestamo.getSocio().getDiasPrestamo() == 0)
             prestamo.getSocio().setSuspendido(true);
     }

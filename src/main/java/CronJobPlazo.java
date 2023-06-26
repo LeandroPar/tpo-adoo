@@ -1,4 +1,7 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.TimerTask;
 
@@ -7,20 +10,31 @@ import static java.lang.System.in;
 public class CronJobPlazo extends TimerTask implements Sujeto{
 
     private List<CondicionPrestamo> prestamos;
-    private LocalDateTime ultimaEjecucion;
+    private LocalDate ultimaEjecucion;
     private List<ObserverPlazo> observers;
     private int diasFaltantes;
 
     public CronJobPlazo(){
-        for (CondicionPrestamo estadoPrestamo: prestamos) {
-            diasFaltantes = estadoPrestamo.prestamo.getDiasFaltantes();
-            estadoPrestamo.prestamo.setDiasFaltantes(diasFaltantes-1);
+        this.prestamos = new LinkedList<CondicionPrestamo>();
+        this.ultimaEjecucion = LocalDate.now();
+        this.observers = new LinkedList<ObserverPlazo>();
+    }
+
+    public void decrementarDiasFaltantes(){
+        for (CondicionPrestamo condPrestamo : prestamos) {
+            condPrestamo.prestamo.setDiasFaltantes(condPrestamo.prestamo.getDiasFaltantes()-1);
         }
+        this.ultimaEjecucion = LocalDate.now();
         this.notificar();
     }
+
     @Override
     public void run() {
-        System.out.println("Hi see you after 10 seconds");
+        System.out.println("Esto se imprime cada segundo");
+        if (LocalTime.now().getSecond()%2==0) {
+            System.out.println("Esto se imprime cad 6 segundos");
+            this.decrementarDiasFaltantes();
+        }
     }
 
     @Override
@@ -43,5 +57,35 @@ public class CronJobPlazo extends TimerTask implements Sujeto{
         }
     }
 
+    public List<CondicionPrestamo> getPrestamos() {
+        return prestamos;
+    }
 
+    public void setPrestamos(List<CondicionPrestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+
+    public LocalDate getUltimaEjecucion() {
+        return ultimaEjecucion;
+    }
+
+    public void setUltimaEjecucion(LocalDate ultimaEjecucion) {
+        this.ultimaEjecucion = ultimaEjecucion;
+    }
+
+    public List<ObserverPlazo> getObservers() {
+        return observers;
+    }
+
+    public void setObservers(List<ObserverPlazo> observers) {
+        this.observers = observers;
+    }
+
+    public int getDiasFaltantes() {
+        return diasFaltantes;
+    }
+
+    public void setDiasFaltantes(int diasFaltantes) {
+        this.diasFaltantes = diasFaltantes;
+    }
 }
