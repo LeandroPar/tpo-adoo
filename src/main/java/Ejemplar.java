@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Ejemplar {
@@ -5,17 +6,29 @@ public class Ejemplar {
     private int ejemplarID;
     private String titulo;
     private String autor;
-    private LocalDateTime fechaPublicacion;
+    private LocalDate fechaPublicacion;
     private TipoCategoria categoria;
     private boolean disponible;
 
-    public Ejemplar(int ejemplarID, String titulo, String autor, LocalDateTime fechaPublicacion, TipoCategoria categoria, boolean disponible) {
+    public Ejemplar(int ejemplarID, String titulo, String autor, LocalDate fechaPublicacion, TipoCategoria categoria, boolean disponible) {
         this.ejemplarID = ejemplarID;
         this.titulo = titulo;
         this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
         this.categoria = categoria;
         this.disponible = disponible;
+    }
+
+    @Override
+    public String toString() {
+        return "Ejemplar{" +
+                "ejemplarID=" + ejemplarID +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", fechaPublicacion=" + fechaPublicacion +
+                ", categoria=" + categoria +
+                ", disponible=" + disponible +
+                '}';
     }
 
     public int getEjemplarID() {
@@ -42,11 +55,11 @@ public class Ejemplar {
         this.autor = autor;
     }
 
-    public LocalDateTime getFechaPublicacion() {
+    public LocalDate getFechaPublicacion() {
         return fechaPublicacion;
     }
 
-    public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
 

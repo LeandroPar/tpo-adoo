@@ -31,6 +31,27 @@ public class Socio extends Usuario{
         this.historial = new ArrayList<Prestamo>();
     }
 
+    @Override
+    public String toString() {
+        return "Socio{" +
+                "socioID=" + socioID +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", dni=" + dni +
+                ", telefono='" + telefono + '\'' +
+                ", mail='" + mail + '\'' +
+                ", medioFav=" + medioFav +
+                ", diasPrestamo=" + diasPrestamo +
+                ", premio=" + premio +
+                ", suspendido=" + suspendido +
+                ", historial=" + historial +
+                '}';
+    }
+
+    public void addHistorial (Prestamo prestamo) {
+        this.historial.add(prestamo);
+    }
+
     public int getSocioID() {
         return socioID;
     }

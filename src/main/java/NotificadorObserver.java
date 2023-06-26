@@ -9,7 +9,6 @@ public class NotificadorObserver extends ObserverPlazo{
     public void notificarMotivo(Prestamo prestamo){
         if (prestamo.getDiasFaltantes() == 1) {
             Mensaje mensaje = new Mensaje("Está por vencer tu prestamo.", TipoMotivo.VENCIMIENTO_PROXIMO);
-
         }
     }
 

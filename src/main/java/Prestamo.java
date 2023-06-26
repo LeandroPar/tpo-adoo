@@ -90,7 +90,7 @@ public class Prestamo {
         return diasFaltantes;
     }
 
-    public void setDiasFaltantes(int diaFaltantes) {
+    public void setDiasFaltantes(int diasFaltantes) {
         this.diasFaltantes = diasFaltantes;
     }
 }

@@ -8,7 +8,6 @@ public class CondicionPrestamoObserver extends ObserverPlazo{
         System.out.println("Check");
         LocalDate fechaUpdate = (observable.getUltimaEjecucion());
         if (this.ultimaFechaEjecucion!=fechaUpdate) {
-            System.out.println("Check");
             actualizarEstado(this.prestamo);
             descontarDiasPrestamoSocio(this.prestamo);
             suspenderSocio(this.prestamo);

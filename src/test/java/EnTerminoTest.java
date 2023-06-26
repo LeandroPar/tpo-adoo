@@ -13,14 +13,12 @@ class EnTerminoTest {
 
     @Test
     void vencido() {
-        Prestamo prestamo = new Prestamo(7, new Socio(7, "AE", "EA",14,"1450","ae", TipoMedioComunicacion.SMS), new Ejemplar(1, "Titulo","Autor", LocalDateTime.of(2023, 05, 05, 12, 30),TipoCategoria.LIBRO,true),4);
+        Prestamo prestamo = new Prestamo(7, new Socio(7, "AE", "EA",14,"1450","ae", TipoMedioComunicacion.SMS), new Ejemplar(1, "Titulo","Autor", LocalDate.of(2023,04,21),TipoCategoria.LIBRO,true),4);
         System.out.println(prestamo.getDiasFaltantes());
         prestamo.getCondicion().decrementar();
         System.out.println(prestamo.getDiasFaltantes());
+        System.out.println(prestamo.getCondicion().toString());
+        prestamo.getCondicion().vencido();
+        System.out.println(prestamo.getCondicion().toString());
     }
-
-    //@Test
-    //void decrementar() {
-        //Prestamo prestamo = new Prestamo(7, new Socio(7, "AE", "EA",14,"1450","ae", TipoMedioComunicacion.SMS), new Ejemplar(1, "Titulo","Autor", LocalDateTime.of(2023, 05, 05, 12, 30),TipoCategoria.LIBRO,true),4);
-    //}
 }

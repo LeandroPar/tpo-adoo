@@ -20,6 +20,10 @@ public class CronJobPlazo extends TimerTask implements Sujeto{
         this.observers = new LinkedList<ObserverPlazo>();
     }
 
+    public void agregarPrestamo(Prestamo prestamo) {
+        this.prestamos.add(prestamo.getCondicion());
+    }
+
     public void decrementarDiasFaltantes(){
         for (CondicionPrestamo condPrestamo : prestamos) {
             condPrestamo.prestamo.setDiasFaltantes(condPrestamo.prestamo.getDiasFaltantes()-1);
@@ -31,8 +35,8 @@ public class CronJobPlazo extends TimerTask implements Sujeto{
     @Override
     public void run() {
         System.out.println("Esto se imprime cada segundo");
-        if (LocalTime.now().getSecond()%2==0) {
-            System.out.println("Esto se imprime cad 6 segundos");
+        if (LocalTime.now().getSecond()%3==0) {
+            System.out.println("Esto se imprime cad 3 segundos");
             this.decrementarDiasFaltantes();
         }
     }
